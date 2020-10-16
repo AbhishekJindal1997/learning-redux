@@ -1,25 +1,26 @@
+
 import React from 'react';
 import './App.css';
-//import store from "./store/configureStore";
-import store from "./OlderMethods/customStore";
-import * as actions from "./OlderMethods/bugs"
+import configureStore from "./store/configureStore";
+import * as actions from "./store/bugs" 
+import {projectAdded} from "./store/projects"
+
 
 
 function App() {
 
+  const store = configureStore();
+
   store.subscribe(()=>{
-    console.log("STORE CHANGED");
-  })
+    console.log("Store Changed !!");
+  });
 
-  store.dispatch(actions.bugAdded("BUG 1"));
-  store.dispatch(actions.bugAdded("BUG 2"));
-  store.dispatch(actions.bugAdded("BUG 3"));
-  store.dispatch(actions.bugResolved(1));
+  store.dispatch(projectAdded({name:"project 1"}));
 
-  
- 
-
-
+  store.dispatch(actions.bugAdded({description:"BUG 1"}));
+  store.dispatch(actions.bugAdded({description:"BUG 2"}));
+  store.dispatch(actions.bugAdded({description:"BUG 3"}));
+  store.dispatch(actions.bugResolved({id:1}));
 
   return (
     <div className="App">
