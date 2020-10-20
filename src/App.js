@@ -2,16 +2,18 @@
 import React from 'react';
 import './App.css';
 import configureStore from "./store/configureStore";
-import {loadBugs} from "./store/bugs"
+import {loadBugs, resolvedBug, assignBugToUser,} from "./store/bugs"
   
 
 function App() {
 
   const store = configureStore();
-  // UI Layer
+  
   store.dispatch(loadBugs());
 
-  setTimeout(store.dispatch(loadBugs()), 2000);
+  setTimeout(() => store.dispatch(assignBugToUser(1, 4), 2000));
+
+
 
 
 
