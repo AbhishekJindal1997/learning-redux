@@ -2,17 +2,17 @@
 import React from 'react';
 import './App.css';
 import configureStore from "./store/configureStore";
-import * as actions from "./store/api";
+import {loadBugs} from "./store/bugs"
   
 
 function App() {
 
   const store = configureStore();
+  // UI Layer
+  store.dispatch(loadBugs());
 
-  store.dispatch(actions.apiCallBegan({
-    url:'/bugs',
-    onSucess:"bugsReceived"
-    }));
+  setTimeout(store.dispatch(loadBugs()), 2000);
+
 
 
 
