@@ -6,8 +6,7 @@ const api = ({dispatch}) => next => async action =>{
 
     if (action.type !== actions.apiCallBegan.type)
       return next(action);
-    
-     
+  
       const {url, method, data, onSucess,onStart, onError} = action.payload;
        
       if(onStart) {
